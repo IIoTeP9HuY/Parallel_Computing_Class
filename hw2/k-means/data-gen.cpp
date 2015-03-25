@@ -67,7 +67,7 @@ int main(int argc , char** argv) {
     size_t dimensions = atoi(argv[1]);
     size_t number_of_points = atoi(argv[2]);
     size_t number_of_clusters = atoi(argv[3]); // 0..32767
-    
+
     string output_file = argv[4];
     ofstream output(output_file);
     if(!output.is_open()) {

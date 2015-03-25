@@ -65,7 +65,7 @@ vector<size_t> KMeans(const Points& data, size_t K) {
     for (size_t i = 0; i < K; ++i) {
         centroids[i] = data[UniformRandom(data_size - 1)];
     }
-    
+
     size_t it = 0;
     bool converged = false;
     while (!converged) {
@@ -79,7 +79,7 @@ vector<size_t> KMeans(const Points& data, size_t K) {
             }
         }
         if (converged) {
-						break;
+            break;
         }
 
         vector<size_t> clusters_sizes(K);
@@ -117,17 +117,14 @@ vector<size_t> KMeansAlternative(const Points& data, size_t K) {
     for (size_t i = 0; i < K; ++i) {
         centroids[i] = data[UniformRandom(data_size - 1)];
     }
-    
-    bool converged = false;
+
     size_t iterationNumber = 0;
 
-		/*
-			To add determinism to algo we need to make constant number of iterations, otherwise,
-			running time will be affected greatly by random.
-		*/
-		while (iterationNumber < 100) {
-        converged = true;
-
+    /*
+        To add determinism to algo we need to make constant number of iterations, otherwise,
+        running time will be affected greatly by random.
+    */
+    while (iterationNumber < 100) {
         Points nextCentroids(K, Point(dimensions));
         vector<size_t> clusters_sizes(K);
 
@@ -136,7 +133,6 @@ vector<size_t> KMeansAlternative(const Points& data, size_t K) {
             size_t nearest_cluster = FindNearestCentroid(centroids, data[i]);
             if (clusters[i] != nearest_cluster) {
                 clusters[i] = nearest_cluster;
-                converged = false;
             }
             for (size_t d = 0; d < dimensions; ++d) {
                 nextCentroids[nearest_cluster][d] += data[i][d];
